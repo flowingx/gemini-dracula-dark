@@ -3,7 +3,7 @@
 // @namespace    https://github.com/flowingx/gemini-dracula-dark
 // @version      1.0.0
 // @description  Dracula-inspired dark theme for Google Gemini. CSS-only styling that activates only when the browser prefers dark mode.
-// @author       flow
+// @author       flowingx
 // @match        https://gemini.google.com/*
 // @run-at       document-start
 // @grant        none
@@ -15,7 +15,497 @@
 
   const STYLE_ID = 'gemini-dracula-dark-style';
   const QUERY = '(prefers-color-scheme: dark)';
-  const CSS = "/*\n * Gemini Dracula Dark - safe build\n * CSS-only. No JavaScript and no drag/drop/paste/click/input handlers.\n *\n * Important: the Gemini top bar is intentionally not targeted here. The goal is\n * to let Gemini's own CSS own the model picker, new-chat button, more button,\n * and account/header area.\n */\n\n@media (prefers-color-scheme: dark) {\n  :root {\n    --gd-bg: #1f2029;\n    --gd-bg-deep: #181922;\n    --gd-bg-panel: #242631;\n    --gd-bg-panel-strong: #2b2d3a;\n    --gd-text: #f8f8f2;\n    --gd-text-muted: #c7c9d9;\n    --gd-text-soft: #a9aec5;\n    --gd-border: #44475a;\n    --gd-red: #ff5555;\n    --gd-pink: #ff79c6;\n    --gd-purple: #bd93f9;\n    --gd-cyan: #8be9fd;\n    --gd-green: #50fa7b;\n    --gd-yellow: #f1fa8c;\n    --gd-shadow: 0 18px 48px rgba(0, 0, 0, 0.36);\n    --gd-glow-red: 0 0 22px rgba(255, 85, 85, 0.25);\n    --gd-glow-purple: 0 0 24px rgba(189, 147, 249, 0.22);\n  }\n\n  html,\n  body {\n    color-scheme: dark !important;\n    margin: 0 !important;\n    padding: 0 !important;\n    min-height: 100% !important;\n    background:\n      radial-gradient(circle at 12% 0%, rgba(189, 147, 249, 0.16), transparent 30rem),\n      radial-gradient(circle at 100% 8%, rgba(139, 233, 253, 0.1), transparent 24rem),\n      linear-gradient(135deg, rgba(255, 85, 85, 0.05) 0 1px, transparent 1px 18px),\n      var(--gd-bg) !important;\n    color: var(--gd-text) !important;\n  }\n\n  body > chat-app,\n  body > #app-root,\n  #app-root,\n  chat-app {\n    background: transparent !important;\n    color: var(--gd-text) !important;\n  }\n\n  .theme-host,\n  .dark-theme,\n  .light-theme,\n  .zero-state-theme,\n  .mat-drawer-container,\n  .mat-sidenav-container,\n  .mat-mdc-drawer-container,\n  .app-container,\n  .chat-container,\n  .main-content,\n  .conversation-container,\n  .conversation,\n  .conversation-turn,\n  .conversation-turn-container,\n  .content-container,\n  .scroll-container,\n  .bard-sidenav-container {\n    background-color: transparent !important;\n    color: var(--gd-text) !important;\n  }\n\n  .side-nav,\n  .sidenav,\n  .bard-sidenav,\n  .mat-drawer,\n  .mat-sidenav,\n  .mat-mdc-drawer {\n    background:\n      linear-gradient(180deg, rgba(189, 147, 249, 0.08), transparent 18rem),\n      rgba(24, 25, 34, 0.98) !important;\n    border-right: 1px solid rgba(68, 71, 90, 0.72) !important;\n    color: var(--gd-text) !important;\n  }\n\n  .initial-input-area-container,\n  .input-area,\n  .input-area-container,\n  .text-input-field,\n  .text-input-field-container,\n  .query-input,\n  .prompt-input,\n  .composer,\n  .composer-container,\n  .rich-textarea,\n  .ql-editor,\n  textarea,\n  input,\n  [contenteditable=\"true\"] {\n    background-color: rgba(36, 38, 49, 0.94) !important;\n    color: var(--gd-text) !important;\n    border-color: rgba(255, 85, 85, 0.35) !important;\n    caret-color: var(--gd-red) !important;\n  }\n\n  .initial-input-area {\n    background: transparent !important;\n    pointer-events: none !important;\n  }\n\n  .initial-input-area-container {\n    pointer-events: auto !important;\n  }\n\n  .initial-input-area-container,\n  .input-area-container,\n  .text-input-field,\n  .text-input-field-container,\n  .composer,\n  .composer-container {\n    border: 1px solid rgba(255, 85, 85, 0.34) !important;\n    border-radius: 22px !important;\n    box-shadow:\n      var(--gd-shadow),\n      inset 0 1px 0 rgba(255, 255, 255, 0.04),\n      var(--gd-glow-red) !important;\n  }\n\n  .initial-input-area textarea,\n  textarea,\n  input,\n  [contenteditable=\"true\"],\n  .ql-editor {\n    outline: none !important;\n    box-shadow: none !important;\n  }\n\n  .initial-input-area-container:focus-within,\n  .input-area-container:focus-within,\n  .text-input-field:focus-within,\n  .text-input-field-container:focus-within,\n  .composer:focus-within,\n  .composer-container:focus-within {\n    border-color: rgba(189, 147, 249, 0.82) !important;\n    box-shadow:\n      var(--gd-shadow),\n      0 0 0 1px rgba(189, 147, 249, 0.36),\n      var(--gd-glow-purple) !important;\n  }\n\n  ::placeholder {\n    color: rgba(248, 248, 242, 0.56) !important;\n  }\n\n  .send-icon {\n    color: var(--gd-green) !important;\n  }\n\n  .speech-icon {\n    color: var(--gd-cyan) !important;\n  }\n\n  .upload-icon {\n    color: var(--gd-pink) !important;\n  }\n\n  .markdown a,\n  .markdown-content a,\n  .model-response a,\n  .response-content a,\n  .link,\n  .citation,\n  .source-link {\n    color: var(--gd-cyan) !important;\n  }\n\n  .markdown a:hover,\n  .markdown-content a:hover,\n  .model-response a:hover,\n  .response-content a:hover,\n  .link:hover,\n  .citation:hover,\n  .source-link:hover {\n    color: var(--gd-yellow) !important;\n    text-decoration-color: rgba(241, 250, 140, 0.8) !important;\n  }\n\n  .markdown h1,\n  .markdown h2,\n  .markdown h3,\n  .markdown h4,\n  .markdown h5,\n  .markdown h6,\n  .markdown-content h1,\n  .markdown-content h2,\n  .markdown-content h3,\n  .markdown-content h4,\n  .markdown-content h5,\n  .markdown-content h6,\n  .model-response h1,\n  .model-response h2,\n  .model-response h3,\n  .model-response h4,\n  .model-response h5,\n  .model-response h6,\n  .response-content h1,\n  .response-content h2,\n  .response-content h3,\n  .response-content h4,\n  .response-content h5,\n  .response-content h6 {\n    color: var(--gd-text) !important;\n    text-shadow: 0 0 10px rgba(255, 85, 85, 0.18) !important;\n  }\n\n  .secondary-text,\n  .subtitle,\n  .description,\n  .placeholder,\n  .metadata,\n  .timestamp,\n  .mat-mdc-card-subtitle,\n  .mat-mdc-form-field-hint,\n  .hint,\n  .disclaimer {\n    color: var(--gd-text-soft) !important;\n  }\n\n  .user-query,\n  .query-text,\n  .user-query-container,\n  .user-message,\n  .message.user,\n  .human-message {\n    color: var(--gd-text) !important;\n  }\n\n  .user-query,\n  .user-query-container,\n  .user-message,\n  .message.user,\n  .user-query .query-text,\n  .user-query-container .query-text,\n  .user-message .query-text,\n  .message.user .query-text,\n  .user-query .user-query-container,\n  .user-query-container .user-query,\n  .user-message .user-query,\n  .message.user .user-query,\n  .message.user .user-query-container {\n    background: transparent !important;\n    border-color: transparent !important;\n    box-shadow: none !important;\n  }\n\n  .model-response,\n  .model-response-text,\n  .response-container,\n  .response-content,\n  .markdown,\n  .markdown-content,\n  .rich-text,\n  .message.model,\n  .assistant-message {\n    color: var(--gd-text) !important;\n  }\n\n  .model-response,\n  .response-container,\n  .message.model,\n  .assistant-message {\n    background-color: rgba(31, 32, 41, 0.58) !important;\n    border-color: rgba(68, 71, 90, 0.46) !important;\n  }\n\n  .mat-mdc-card,\n  .card,\n  .tile,\n  .suggestion,\n  .suggestion-card,\n  .prompt-card,\n  .example-card,\n  .result-card,\n  .attachment,\n  .file-chip,\n  .image-card,\n  .media-card,\n  .source-card,\n  .code-block,\n  pre,\n  code,\n  table {\n    background-color: rgba(36, 38, 49, 0.92) !important;\n    color: var(--gd-text) !important;\n    border-color: rgba(68, 71, 90, 0.72) !important;\n  }\n\n  .mat-mdc-card,\n  .card,\n  .tile,\n  .suggestion-card,\n  .prompt-card,\n  .result-card,\n  .source-card {\n    border: 1px solid rgba(68, 71, 90, 0.68) !important;\n    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24) !important;\n  }\n\n  .suggestion-card:hover,\n  .prompt-card:hover,\n  .result-card:hover,\n  .source-card:hover {\n    border-color: rgba(139, 233, 253, 0.42) !important;\n    box-shadow:\n      0 14px 34px rgba(0, 0, 0, 0.3),\n      0 0 18px rgba(139, 233, 253, 0.14) !important;\n  }\n\n  pre,\n  code,\n  .code-block {\n    font-family: \"Cascadia Code\", \"JetBrains Mono\", \"SFMono-Regular\", Consolas, monospace !important;\n  }\n\n  pre {\n    border: 1px solid rgba(68, 71, 90, 0.8) !important;\n    box-shadow: inset 3px 0 0 rgba(255, 85, 85, 0.85) !important;\n  }\n\n  code {\n    color: var(--gd-yellow) !important;\n  }\n\n  .token.keyword,\n  .hljs-keyword,\n  .cm-keyword {\n    color: var(--gd-pink) !important;\n  }\n\n  .token.string,\n  .hljs-string,\n  .cm-string {\n    color: var(--gd-yellow) !important;\n  }\n\n  .token.function,\n  .hljs-title,\n  .cm-def {\n    color: var(--gd-green) !important;\n  }\n\n  .token.comment,\n  .hljs-comment,\n  .cm-comment {\n    color: #6272a4 !important;\n  }\n\n  .token.number,\n  .hljs-number,\n  .cm-number {\n    color: var(--gd-purple) !important;\n  }\n\n  blockquote {\n    background: rgba(36, 38, 49, 0.78) !important;\n    border-left: 4px solid var(--gd-purple) !important;\n    color: var(--gd-text-muted) !important;\n    margin-left: 0 !important;\n    padding: 0.75rem 1rem 0.75rem 1.15rem !important;\n  }\n\n  .markdown blockquote,\n  .markdown-content blockquote,\n  .model-response blockquote,\n  .response-content blockquote,\n  .quote,\n  .blockquote,\n  .quoted-text,\n  .markdown [style*=\"border-left\"],\n  .markdown-content [style*=\"border-left\"],\n  .model-response [style*=\"border-left\"],\n  .response-content [style*=\"border-left\"] {\n    padding-left: 1.15rem !important;\n  }\n\n  blockquote > :first-child {\n    margin-top: 0 !important;\n  }\n\n  blockquote > :last-child {\n    margin-bottom: 0 !important;\n  }\n\n  hr,\n  mat-divider,\n  .mat-divider,\n  .divider,\n  .separator {\n    border-color: rgba(68, 71, 90, 0.76) !important;\n  }\n\n  table,\n  th,\n  td {\n    border-color: rgba(68, 71, 90, 0.82) !important;\n  }\n\n  th {\n    background-color: rgba(189, 147, 249, 0.14) !important;\n    color: var(--gd-text) !important;\n  }\n\n  tr:nth-child(even) td {\n    background-color: rgba(68, 71, 90, 0.2) !important;\n  }\n\n  .mat-mdc-progress-spinner circle,\n  .mat-progress-spinner circle {\n    stroke: var(--gd-red) !important;\n  }\n\n  .mat-mdc-progress-bar,\n  .progress,\n  .loading {\n    --mdc-linear-progress-active-indicator-color: var(--gd-red);\n    --mdc-linear-progress-track-color: rgba(68, 71, 90, 0.72);\n  }\n\n  .mdc-switch,\n  .mat-mdc-slide-toggle,\n  .mat-mdc-checkbox,\n  .mat-mdc-radio-button {\n    --mdc-switch-selected-handle-color: var(--gd-red);\n    --mdc-switch-selected-track-color: rgba(255, 85, 85, 0.36);\n    --mdc-checkbox-selected-checkmark-color: #1f2029;\n    --mdc-checkbox-selected-icon-color: var(--gd-green);\n    --mdc-radio-selected-icon-color: var(--gd-purple);\n  }\n\n  .mat-mdc-form-field,\n  .mat-mdc-text-field-wrapper,\n  .mdc-text-field,\n  select {\n    background-color: rgba(36, 38, 49, 0.9) !important;\n    color: var(--gd-text) !important;\n  }\n\n  .mat-mdc-form-field-outline,\n  .mdc-notched-outline,\n  .mdc-notched-outline__leading,\n  .mdc-notched-outline__notch,\n  .mdc-notched-outline__trailing {\n    border-color: rgba(68, 71, 90, 0.84) !important;\n  }\n\n  .mat-mdc-tooltip,\n  .tooltip {\n    background-color: #11121a !important;\n    color: var(--gd-text) !important;\n    border: 1px solid rgba(189, 147, 249, 0.4) !important;\n  }\n\n  ::selection {\n    background: rgba(255, 85, 85, 0.36) !important;\n    color: #ffffff !important;\n  }\n\n  ::-webkit-scrollbar {\n    width: 12px;\n    height: 12px;\n  }\n\n  ::-webkit-scrollbar-track {\n    background: rgba(24, 25, 34, 0.96);\n  }\n\n  ::-webkit-scrollbar-thumb {\n    background: linear-gradient(180deg, var(--gd-red), var(--gd-purple));\n    border: 3px solid rgba(24, 25, 34, 0.96);\n    border-radius: 999px;\n  }\n\n  ::-webkit-scrollbar-thumb:hover {\n    background: linear-gradient(180deg, var(--gd-pink), var(--gd-cyan));\n  }\n\n}\n";
+  const CSS = String.raw`
+/*
+ * Gemini Dracula Dark - safe build
+ * CSS-only. No JavaScript and no drag/drop/paste/click/input handlers.
+ *
+ * Important: the Gemini top bar is intentionally not targeted here. The goal is
+ * to let Gemini's own CSS own the model picker, new-chat button, more button,
+ * and account/header area.
+ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --gd-bg: #1f2029;
+    --gd-bg-deep: #181922;
+    --gd-bg-panel: #242631;
+    --gd-bg-panel-strong: #2b2d3a;
+    --gd-text: #f8f8f2;
+    --gd-text-muted: #c7c9d9;
+    --gd-text-soft: #a9aec5;
+    --gd-border: #44475a;
+    --gd-red: #ff5555;
+    --gd-pink: #ff79c6;
+    --gd-purple: #bd93f9;
+    --gd-cyan: #8be9fd;
+    --gd-green: #50fa7b;
+    --gd-yellow: #f1fa8c;
+    --gd-shadow: 0 18px 48px rgba(0, 0, 0, 0.36);
+    --gd-glow-red: 0 0 22px rgba(255, 85, 85, 0.25);
+    --gd-glow-purple: 0 0 24px rgba(189, 147, 249, 0.22);
+  }
+
+  html,
+  body {
+    color-scheme: dark !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    min-height: 100% !important;
+    background:
+      radial-gradient(circle at 12% 0%, rgba(189, 147, 249, 0.16), transparent 30rem),
+      radial-gradient(circle at 100% 8%, rgba(139, 233, 253, 0.1), transparent 24rem),
+      linear-gradient(135deg, rgba(255, 85, 85, 0.05) 0 1px, transparent 1px 18px),
+      var(--gd-bg) !important;
+    color: var(--gd-text) !important;
+  }
+
+  body > chat-app,
+  body > #app-root,
+  #app-root,
+  chat-app {
+    background: transparent !important;
+    color: var(--gd-text) !important;
+  }
+
+  .theme-host,
+  .dark-theme,
+  .light-theme,
+  .zero-state-theme,
+  .mat-drawer-container,
+  .mat-sidenav-container,
+  .mat-mdc-drawer-container,
+  .app-container,
+  .chat-container,
+  .main-content,
+  .conversation-container,
+  .conversation,
+  .conversation-turn,
+  .conversation-turn-container,
+  .content-container,
+  .scroll-container,
+  .bard-sidenav-container {
+    background-color: transparent !important;
+    color: var(--gd-text) !important;
+  }
+
+  .side-nav,
+  .sidenav,
+  .bard-sidenav,
+  .mat-drawer,
+  .mat-sidenav,
+  .mat-mdc-drawer {
+    background:
+      linear-gradient(180deg, rgba(189, 147, 249, 0.08), transparent 18rem),
+      rgba(24, 25, 34, 0.98) !important;
+    border-right: 1px solid rgba(68, 71, 90, 0.72) !important;
+    color: var(--gd-text) !important;
+  }
+
+  .initial-input-area-container,
+  .input-area,
+  .input-area-container,
+  .text-input-field,
+  .text-input-field-container,
+  .query-input,
+  .prompt-input,
+  .composer,
+  .composer-container,
+  .rich-textarea,
+  .ql-editor,
+  textarea,
+  input,
+  [contenteditable="true"] {
+    background-color: rgba(36, 38, 49, 0.94) !important;
+    color: var(--gd-text) !important;
+    border-color: rgba(255, 85, 85, 0.35) !important;
+    caret-color: var(--gd-red) !important;
+  }
+
+  .initial-input-area {
+    background: transparent !important;
+    pointer-events: none !important;
+  }
+
+  .initial-input-area-container {
+    pointer-events: auto !important;
+  }
+
+  .initial-input-area-container,
+  .input-area-container,
+  .text-input-field,
+  .text-input-field-container,
+  .composer,
+  .composer-container {
+    border: 1px solid rgba(255, 85, 85, 0.34) !important;
+    border-radius: 22px !important;
+    box-shadow:
+      var(--gd-shadow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      var(--gd-glow-red) !important;
+  }
+
+  .initial-input-area textarea,
+  textarea,
+  input,
+  [contenteditable="true"],
+  .ql-editor {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  .initial-input-area-container:focus-within,
+  .input-area-container:focus-within,
+  .text-input-field:focus-within,
+  .text-input-field-container:focus-within,
+  .composer:focus-within,
+  .composer-container:focus-within {
+    border-color: rgba(189, 147, 249, 0.82) !important;
+    box-shadow:
+      var(--gd-shadow),
+      0 0 0 1px rgba(189, 147, 249, 0.36),
+      var(--gd-glow-purple) !important;
+  }
+
+  ::placeholder {
+    color: rgba(248, 248, 242, 0.56) !important;
+  }
+
+  .send-icon {
+    color: var(--gd-green) !important;
+  }
+
+  .speech-icon {
+    color: var(--gd-cyan) !important;
+  }
+
+  .upload-icon {
+    color: var(--gd-pink) !important;
+  }
+
+  .markdown a,
+  .markdown-content a,
+  .model-response a,
+  .response-content a,
+  .link,
+  .citation,
+  .source-link {
+    color: var(--gd-cyan) !important;
+  }
+
+  .markdown a:hover,
+  .markdown-content a:hover,
+  .model-response a:hover,
+  .response-content a:hover,
+  .link:hover,
+  .citation:hover,
+  .source-link:hover {
+    color: var(--gd-yellow) !important;
+    text-decoration-color: rgba(241, 250, 140, 0.8) !important;
+  }
+
+  .markdown h1,
+  .markdown h2,
+  .markdown h3,
+  .markdown h4,
+  .markdown h5,
+  .markdown h6,
+  .markdown-content h1,
+  .markdown-content h2,
+  .markdown-content h3,
+  .markdown-content h4,
+  .markdown-content h5,
+  .markdown-content h6,
+  .model-response h1,
+  .model-response h2,
+  .model-response h3,
+  .model-response h4,
+  .model-response h5,
+  .model-response h6,
+  .response-content h1,
+  .response-content h2,
+  .response-content h3,
+  .response-content h4,
+  .response-content h5,
+  .response-content h6 {
+    color: var(--gd-text) !important;
+    text-shadow: 0 0 10px rgba(255, 85, 85, 0.18) !important;
+  }
+
+  .secondary-text,
+  .subtitle,
+  .description,
+  .placeholder,
+  .metadata,
+  .timestamp,
+  .mat-mdc-card-subtitle,
+  .mat-mdc-form-field-hint,
+  .hint,
+  .disclaimer {
+    color: var(--gd-text-soft) !important;
+  }
+
+  .user-query,
+  .query-text,
+  .user-query-container,
+  .user-message,
+  .message.user,
+  .human-message {
+    color: var(--gd-text) !important;
+  }
+
+  .user-query,
+  .user-query-container,
+  .user-message,
+  .message.user,
+  .user-query .query-text,
+  .user-query-container .query-text,
+  .user-message .query-text,
+  .message.user .query-text,
+  .user-query .user-query-container,
+  .user-query-container .user-query,
+  .user-message .user-query,
+  .message.user .user-query,
+  .message.user .user-query-container {
+    background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .model-response,
+  .model-response-text,
+  .response-container,
+  .response-content,
+  .markdown,
+  .markdown-content,
+  .rich-text,
+  .message.model,
+  .assistant-message {
+    color: var(--gd-text) !important;
+  }
+
+  .model-response,
+  .response-container,
+  .message.model,
+  .assistant-message {
+    background-color: rgba(31, 32, 41, 0.58) !important;
+    border-color: rgba(68, 71, 90, 0.46) !important;
+  }
+
+  .mat-mdc-card,
+  .card,
+  .tile,
+  .suggestion,
+  .suggestion-card,
+  .prompt-card,
+  .example-card,
+  .result-card,
+  .attachment,
+  .file-chip,
+  .image-card,
+  .media-card,
+  .source-card,
+  .code-block,
+  pre,
+  code,
+  table {
+    background-color: rgba(36, 38, 49, 0.92) !important;
+    color: var(--gd-text) !important;
+    border-color: rgba(68, 71, 90, 0.72) !important;
+  }
+
+  .mat-mdc-card,
+  .card,
+  .tile,
+  .suggestion-card,
+  .prompt-card,
+  .result-card,
+  .source-card {
+    border: 1px solid rgba(68, 71, 90, 0.68) !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.24) !important;
+  }
+
+  .suggestion-card:hover,
+  .prompt-card:hover,
+  .result-card:hover,
+  .source-card:hover {
+    border-color: rgba(139, 233, 253, 0.42) !important;
+    box-shadow:
+      0 14px 34px rgba(0, 0, 0, 0.3),
+      0 0 18px rgba(139, 233, 253, 0.14) !important;
+  }
+
+  pre,
+  code,
+  .code-block {
+    font-family: "Cascadia Code", "JetBrains Mono", "SFMono-Regular", Consolas, monospace !important;
+  }
+
+  pre {
+    border: 1px solid rgba(68, 71, 90, 0.8) !important;
+    box-shadow: inset 3px 0 0 rgba(255, 85, 85, 0.85) !important;
+  }
+
+  code {
+    color: var(--gd-yellow) !important;
+  }
+
+  .token.keyword,
+  .hljs-keyword,
+  .cm-keyword {
+    color: var(--gd-pink) !important;
+  }
+
+  .token.string,
+  .hljs-string,
+  .cm-string {
+    color: var(--gd-yellow) !important;
+  }
+
+  .token.function,
+  .hljs-title,
+  .cm-def {
+    color: var(--gd-green) !important;
+  }
+
+  .token.comment,
+  .hljs-comment,
+  .cm-comment {
+    color: #6272a4 !important;
+  }
+
+  .token.number,
+  .hljs-number,
+  .cm-number {
+    color: var(--gd-purple) !important;
+  }
+
+  blockquote {
+    background: rgba(36, 38, 49, 0.78) !important;
+    border-left: 4px solid var(--gd-purple) !important;
+    color: var(--gd-text-muted) !important;
+    margin-left: 0 !important;
+    padding: 0.75rem 1rem 0.75rem 1.15rem !important;
+  }
+
+  .markdown blockquote,
+  .markdown-content blockquote,
+  .model-response blockquote,
+  .response-content blockquote,
+  .quote,
+  .blockquote,
+  .quoted-text,
+  .markdown [style*="border-left"],
+  .markdown-content [style*="border-left"],
+  .model-response [style*="border-left"],
+  .response-content [style*="border-left"] {
+    padding-left: 1.15rem !important;
+  }
+
+  blockquote > :first-child {
+    margin-top: 0 !important;
+  }
+
+  blockquote > :last-child {
+    margin-bottom: 0 !important;
+  }
+
+  hr,
+  mat-divider,
+  .mat-divider,
+  .divider,
+  .separator {
+    border-color: rgba(68, 71, 90, 0.76) !important;
+  }
+
+  table,
+  th,
+  td {
+    border-color: rgba(68, 71, 90, 0.82) !important;
+  }
+
+  th {
+    background-color: rgba(189, 147, 249, 0.14) !important;
+    color: var(--gd-text) !important;
+  }
+
+  tr:nth-child(even) td {
+    background-color: rgba(68, 71, 90, 0.2) !important;
+  }
+
+  .mat-mdc-progress-spinner circle,
+  .mat-progress-spinner circle {
+    stroke: var(--gd-red) !important;
+  }
+
+  .mat-mdc-progress-bar,
+  .progress,
+  .loading {
+    --mdc-linear-progress-active-indicator-color: var(--gd-red);
+    --mdc-linear-progress-track-color: rgba(68, 71, 90, 0.72);
+  }
+
+  .mdc-switch,
+  .mat-mdc-slide-toggle,
+  .mat-mdc-checkbox,
+  .mat-mdc-radio-button {
+    --mdc-switch-selected-handle-color: var(--gd-red);
+    --mdc-switch-selected-track-color: rgba(255, 85, 85, 0.36);
+    --mdc-checkbox-selected-checkmark-color: #1f2029;
+    --mdc-checkbox-selected-icon-color: var(--gd-green);
+    --mdc-radio-selected-icon-color: var(--gd-purple);
+  }
+
+  .mat-mdc-form-field,
+  .mat-mdc-text-field-wrapper,
+  .mdc-text-field,
+  select {
+    background-color: rgba(36, 38, 49, 0.9) !important;
+    color: var(--gd-text) !important;
+  }
+
+  .mat-mdc-form-field-outline,
+  .mdc-notched-outline,
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-color: rgba(68, 71, 90, 0.84) !important;
+  }
+
+  .mat-mdc-tooltip,
+  .tooltip {
+    background-color: #11121a !important;
+    color: var(--gd-text) !important;
+    border: 1px solid rgba(189, 147, 249, 0.4) !important;
+  }
+
+  ::selection {
+    background: rgba(255, 85, 85, 0.36) !important;
+    color: #ffffff !important;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(24, 25, 34, 0.96);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--gd-red), var(--gd-purple));
+    border: 3px solid rgba(24, 25, 34, 0.96);
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, var(--gd-pink), var(--gd-cyan));
+  }
+
+}
+
+`;
 
   function enable() {
     if (document.getElementById(STYLE_ID)) return;
