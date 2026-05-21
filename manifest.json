@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Gemini Dracula Dark",
+  "version": "1.0.0",
+  "description": "A Dracula-inspired dark theme for Google Gemini that only activates when Chrome prefers dark mode.",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://gemini.google.com/*"
+      ],
+      "css": [
+        "gemini-dracula.css"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}
